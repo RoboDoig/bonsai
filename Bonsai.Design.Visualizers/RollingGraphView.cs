@@ -105,6 +105,11 @@ namespace Bonsai.Design.Visualizers
             graph.AddValues(index, values);
         }
 
+        public virtual void Clear()
+        {
+            graph.Clear();
+        }
+
         protected override bool ProcessDialogKey(Keys keyData)
         {
             var keyCode = keyData & Keys.KeyCode;

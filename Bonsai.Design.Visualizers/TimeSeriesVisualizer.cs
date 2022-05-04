@@ -119,6 +119,13 @@ namespace Bonsai.Design.Visualizers
             }
             else base.Show(value);
         }
+
+        public override void SequenceCompleted()
+        {
+            base.SequenceCompleted();
+            Clear();
+            Show(0);
+        }
     }
 
     /// <summary>
@@ -188,6 +195,12 @@ namespace Bonsai.Design.Visualizers
         public override void Show(object value)
         {
             AddValue(DateTime.Now, Convert.ToDouble(value));
+        }
+
+        // TODO - should this override from DialogTypeVisualizer?
+        public void Clear()
+        {
+            view.Clear();
         }
 
         /// <inheritdoc/>

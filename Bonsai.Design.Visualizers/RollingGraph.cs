@@ -146,5 +146,11 @@ namespace Bonsai.Design.Visualizers
                 series[i].Add(index, values[i], tag);
             }
         }
+
+        public void Clear()
+        {
+            series = null;
+            EnsureCapacity();
+        }
     }
 }

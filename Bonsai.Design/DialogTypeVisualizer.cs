@@ -62,6 +62,7 @@ namespace Bonsai.Design
         /// </summary>
         public virtual void SequenceCompleted()
         {
+            Console.WriteLine("Sequence Completed");
         }
     }
 }
