@@ -197,7 +197,7 @@ namespace Bonsai.Design.Visualizers
         }
 
         // TODO - should this override from DialogTypeVisualizer?
-        public void Clear()
+        public override void Clear()
         {
             view.Clear();
         }

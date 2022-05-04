@@ -17,6 +17,13 @@ namespace Bonsai.Design
         public abstract void Show(object value);
 
         /// <summary>
+        /// Clears the visualizer of all displayed values
+        /// </summary>
+        public virtual void Clear()
+        {
+        }
+
+        /// <summary>
         /// Loads type visualizer resources using the specified service provider.
         /// </summary>
         /// <param name="provider">
@@ -62,7 +69,6 @@ namespace Bonsai.Design
         /// </summary>
         public virtual void SequenceCompleted()
         {
-            Console.WriteLine("Sequence Completed");
         }
     }
 }
