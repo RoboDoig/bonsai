@@ -124,7 +124,6 @@ namespace Bonsai.Design.Visualizers
         {
             base.SequenceCompleted();
             Clear();
-            Show(0);
         }
     }
 
