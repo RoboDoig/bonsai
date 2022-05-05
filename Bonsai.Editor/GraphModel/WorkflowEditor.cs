@@ -261,13 +261,7 @@ namespace Bonsai.Editor.GraphModel
             var isExternalizedMapping = targetElement is ExternalizedMappingBuilder;
             var maxConnectionCount = isExternalizedMapping ? 1 : target.Value.ArgumentRange.UpperBound;
             var sources = graphViewSources.Select(sourceNode => GetGraphNodeTag(Workflow, sourceNode, false));
-            //var sourceBuilders = graphViewSources.Select(sourceNode => ExpressionBuilder.Unwrap(sourceNode.Value)).ToList();
-
-            //DEBUG
-            foreach (var element in Workflow.Predecessors(target))
-            {
-                var unwrap = ExpressionBuilder.Unwrap(element.Value);
-            }
+            // NOTE - disabled sources must also be excluded from the connectionCount
 
             var connectionCount = Workflow.Contains(target)
                 ? Workflow.Predecessors(target).Count(node => !node.Value.IsBuildDependency() && ExpressionBuilder.Unwrap(node.Value).GetType() != typeof(DisableBuilder)) // Count as predecessor only if not disabled
