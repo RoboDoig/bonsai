@@ -908,8 +908,10 @@ namespace Bonsai.Editor.GraphView
                     if (highlight != null && !dragSelection.Contains(highlight))
                     {
                         var link = (e.KeyState & CtrlModifier) == 0;
-                        if (link)
+                        // Check drag link validity
+                        if (link) 
                         {
+                            // If connection valid, assign link effect - else no effect
                             e.Effect = ValidateConnection(e.KeyState, highlight)
                                 ? DragDropEffects.Link
                                 : DragDropEffects.None;

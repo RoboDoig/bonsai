@@ -1,4 +1,4 @@
-using Bonsai.Dag;
+﻿using Bonsai.Dag;
 using Bonsai.Design;
 using Bonsai.Editor.Properties;
 using Bonsai.Expressions;
