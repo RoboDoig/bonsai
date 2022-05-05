@@ -263,7 +263,7 @@ namespace Bonsai.Editor.GraphModel
             var sources = graphViewSources.Select(sourceNode => GetGraphNodeTag(Workflow, sourceNode, false));
 
             var connectionCount = Workflow.Contains(target) // Represents the number of existing predecessor connections to the target
-                ? Workflow.Predecessors(target).Count(node => !node.Value.IsBuildDependency() && ExpressionBuilder.Unwrap(node.Value).GetType() != typeof(DisableBuilder)) // Count as predecessor only if not disabled
+                ? Workflow.Predecessors(target).Count(node => !node.Value.IsBuildDependency() && !(ExpressionBuilder.Unwrap(node.Value) is DisableBuilder)) // Count as predecessor only if not disabled
                 : 0;
             foreach (var source in sources)
             {
@@ -273,7 +273,7 @@ namespace Bonsai.Editor.GraphModel
                     return false;
                 }
 
-                int nConnectionsAdded = ExpressionBuilder.Unwrap(source.Value).GetType() != typeof(DisableBuilder) ? 1 : 0;
+                int nConnectionsAdded = ExpressionBuilder.Unwrap(source.Value) is DisableBuilder ? 0 : 1;
 
                 if (connectionCount+nConnectionsAdded > maxConnectionCount &&
                     !source.Value.IsBuildDependency() ||
