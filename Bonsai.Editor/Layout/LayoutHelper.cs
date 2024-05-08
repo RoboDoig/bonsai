@@ -191,7 +191,7 @@ namespace Bonsai.Design
         {
             var visualizerMappings = ExpressionBuilder.GetVisualizerMappings(builder);
             if (visualizerMappings.Count == 0) return Array.Empty<VisualizerFactory>();
-            return visualizerMappings.Select(mapping =>
+            return visualizerMappings.Where(mapping => mapping.Source != builder).Select(mapping =>
             {
                 var nestedSources = GetMashupArguments(mapping.Source, typeVisualizerMap);
                 var visualizerType = mapping.VisualizerType ?? typeVisualizerMap.GetTypeVisualizers(mapping.Source).FirstOrDefault();
