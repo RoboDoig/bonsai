@@ -191,12 +191,15 @@ namespace Bonsai.Design
         {
             var visualizerMappings = ExpressionBuilder.GetVisualizerMappings(builder);
             if (visualizerMappings.Count == 0) return Array.Empty<VisualizerFactory>();
-            return visualizerMappings.Where(mapping => mapping.Source != builder).Select(mapping =>
+
+            var mashupArguments = visualizerMappings.Select(mapping =>
             {
-                var nestedSources = GetMashupArguments(mapping.Source, typeVisualizerMap);
+                var nestedSources = (mapping.Source != builder) ? GetMashupArguments(mapping.Source, typeVisualizerMap) : Array.Empty<VisualizerFactory>();
                 var visualizerType = mapping.VisualizerType ?? typeVisualizerMap.GetTypeVisualizers(mapping.Source).FirstOrDefault();
                 return new VisualizerFactory(mapping.Source, visualizerType, nestedSources);
             }).ToList();
+
+            return mashupArguments;
         }
 
         public static Dictionary<InspectBuilder, VisualizerDialogLauncher> CreateVisualizerMapping(
